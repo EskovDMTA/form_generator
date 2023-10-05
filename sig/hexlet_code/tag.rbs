@@ -1,0 +1,9 @@
+module HexletCode
+  class Tag
+    def self.build: -> String
+
+    def self.paired_tag?: -> String
+
+    def self.parsing_attributes: -> String
+  end
+end
