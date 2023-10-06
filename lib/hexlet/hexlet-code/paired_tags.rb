@@ -13,4 +13,4 @@ PAIRED_TAGS = %w[a abbr address acronym applet article aside audio b bdi bdo big
                  samp script
                  section select small spacer span strike strong style sub summary sup table
                  tbody td
-                 textarea tfoot th thead time title tr tt u ul var video xmp]
+                 textarea tfoot th thead time title tr tt u ul var video xmp].freeze

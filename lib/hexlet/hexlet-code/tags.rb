@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 require_relative "paired_tags"
-autoload(HexletCode,'lib/hexlet/hexlet-code/hexlet-code')
+# autoload("HexletCode", "lib/hexlet/hexlet-code/hexlet_code")
 module HexletCode
   class Tag
     class << self
@@ -19,4 +20,3 @@ module HexletCode
     end
   end
 end
-
