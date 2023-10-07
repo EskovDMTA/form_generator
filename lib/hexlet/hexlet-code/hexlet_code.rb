@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module HexletCode
-  autoload("FormBodyBuilder", "./lib/hexlet/hexlet-code/form_body_builder")
-  autoload("Tag", "./lib/hexlet/hexlet-code/tag")
+  autoload(:FormBodyBuilder, "./lib/hexlet/hexlet-code/form_body_builder")
+  autoload(:Tag, "./lib/hexlet/hexlet-code/tag")
 
   def self.form_for(user, attributes = {})
     attributes[:action] = attributes.delete(:url) if attributes.key?(:url)
