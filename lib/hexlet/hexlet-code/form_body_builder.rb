@@ -39,7 +39,7 @@ module HexletCode
     end
 
     def build_label(name)
-      Tag.build("label", { for: name }, name.to_s.capitalize)
+      Tag.build("label", { for: name }, name.to_s)
     end
 
     def submit(value = "Save")
