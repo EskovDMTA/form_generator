@@ -11,6 +11,7 @@ class TestTag < Minitest::Test
     form = HexletCode.form_for user do |f|
       f.input :name, class: "hexlet"
       f.input :job, as: :text
+      f.submit "Wow"
     end
     assert_equal expected_form, form
   end

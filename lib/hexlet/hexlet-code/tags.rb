@@ -26,12 +26,18 @@ module HexletCode
         text_attributes = { name: name, cols: 20, rows: 40 }.merge(attributes).reject do |k, _v|
           %i[as value].include?(k)
         end
+        @result += Tag.build("label", { for: name }, name.to_s.capitalize)
         @result += Tag.build("textarea", text_attributes, attributes[:value])
       else
         input_attributes = { name: name, type: "text", value: value }.merge(attributes)
+        @result += Tag.build("label", { for: name }, name.to_s.capitalize)
         @result += Tag.build("input", input_attributes)
       end
       @result
+    end
+
+    def submit(value = "Save")
+      @result += Tag.build("input", { type: "submit", value: value })
     end
   end
 
@@ -53,3 +59,13 @@ module HexletCode
     end
   end
 end
+
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new name: "rob", job: "developer", gender: "Male"
+form = HexletCode.form_for user do |f|
+  f.input :name, class: "hexlet"
+  f.input :job, as: :text
+  f.submit
+  f.submit "WOW"
+end
+print form

@@ -6,4 +6,14 @@ module HexletCode
 
     def self.parsing_attributes: -> String
   end
+
+  class FormBodyBuilder
+    @result: String
+
+    def input: -> String
+
+    def submit: -> String
+  end
+
+  def self.form_for: -> String
 end
