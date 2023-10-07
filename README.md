@@ -31,6 +31,7 @@ Create a new user object of type User and initialize it with the values for the 
 user = User.new name: 'rob', job: 'hexlet'
 ```
 Creating a form using a user object. Object |f| is an instance of the **HexletCode::FormBuilder** class that provides methods for creating form elements.
+Label is added to fields automatically
 
 ```ruby
 HexletCode.form_for user do |f|
@@ -38,10 +39,14 @@ HexletCode.form_for user do |f|
   f.input :name
   #f.input :job, as: :text creates an input field for the job value of the user object, but using a textarea field instead of a regular input field.
   f.input :job, as: :text
+  # f.submit "Wow" create input field with type "submit". And we can enter text for the button. Base text value for button "Save"
+  f.submit "Wow"
 end
 # =>
 # <form action="#" method="post">
+# <label for="name">Name</label>
 # <input name="name" type="text" value="rob">
+# <label for="job">Job</label>
 # <textarea name="job" cols="20" rows="40">hexlet</textarea>
 # </form>
 ```
@@ -53,7 +58,9 @@ HexletCode.form_for user, url: '#' do |f|
 end
 # =>
 # <form action="#" method="post">
+# <label for="name">Name</label>
 # <input name="name" type="text" value="rob" class="user-input">
+# <label for="job">Job</label>
 # <input name="job" type="text" value="hexlet">
 # </form>
 ```
