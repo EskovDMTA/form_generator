@@ -10,6 +10,12 @@ module HexletCode
   class FormBodyBuilder
     @result: String
 
+    def build_default_input: -> String
+
+    def build_label: -> String
+
+    def build_text_input: -> String
+
     def input: -> String
 
     def submit: -> String

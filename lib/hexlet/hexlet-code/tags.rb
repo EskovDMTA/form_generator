@@ -19,21 +19,36 @@ module HexletCode
     end
 
     def input(name, attributes = {})
-      value = user.public_send(name)
-      attributes[:value] = value if value
+      @value = user.public_send(name)
+      attributes[:value] = @value if @value
 
       if attributes[:as] == :text
-        text_attributes = { name: name, cols: 20, rows: 40 }.merge(attributes).reject do |k, _v|
-          %i[as value].include?(k)
-        end
-        @result += Tag.build("label", { for: name }, name.to_s.capitalize)
-        @result += Tag.build("textarea", text_attributes, attributes[:value])
+        build_text_input(name, attributes)
       else
-        input_attributes = { name: name, type: "text", value: value }.merge(attributes)
-        @result += Tag.build("label", { for: name }, name.to_s.capitalize)
-        @result += Tag.build("input", input_attributes)
+        build_default_input(name, attributes)
       end
+    end
+
+    def build_text_input(name, attributes)
+      text_attributes = { name: name, cols: 20, rows: 40 }.merge(attributes).reject do |k, _v|
+        %i[as value].include?(k)
+      end
+
+      @result += build_label(name)
+      @result += Tag.build("textarea", text_attributes, attributes[:value])
       @result
+    end
+
+    def build_default_input(name, attributes)
+      input_attributes = { name: name, type: "text", value: @value }.merge(attributes)
+
+      @result += build_label(name)
+      @result += Tag.build("input", input_attributes)
+      @result
+    end
+
+    def build_label(name)
+      Tag.build("label", { for: name }, name.to_s.capitalize)
     end
 
     def submit(value = "Save")
@@ -59,13 +74,3 @@ module HexletCode
     end
   end
 end
-
-User = Struct.new(:name, :job, :gender, keyword_init: true)
-user = User.new name: "rob", job: "developer", gender: "Male"
-form = HexletCode.form_for user do |f|
-  f.input :name, class: "hexlet"
-  f.input :job, as: :text
-  f.submit
-  f.submit "WOW"
-end
-print form
