@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../../../lib/hexlet/hexlet-code/tags"
+require "hexlet/hexlet-code/hexlet_code"
 
 class TestTag < Minitest::Test
   def test_form_for
