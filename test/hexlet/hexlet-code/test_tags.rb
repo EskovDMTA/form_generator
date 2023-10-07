@@ -4,6 +4,14 @@ require "test_helper"
 require_relative "../../../lib/hexlet/hexlet-code/tags"
 
 class TestTag < Minitest::Test
+  def test_return_form_without_action
+    assert_equal "<form action=\"#\" method=\"post\"></form>", HexletCode.form_for("name")
+  end
+
+  def test_return_form_with_url
+    assert_equal "<form action=\"/user\" method=\"post\"></form>", HexletCode.form_for("name", url: "/user")
+  end
+
   def test_single_quotes_tag
     assert_equal "<br>", HexletCode::Tag.build("br")
   end

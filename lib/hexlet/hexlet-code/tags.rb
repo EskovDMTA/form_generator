@@ -3,6 +3,12 @@
 require_relative "paired_tags"
 # autoload("HexletCode", "lib/hexlet/hexlet-code/hexlet_code")
 module HexletCode
+  def self.form_for(_user, attributes = {})
+    attributes[:action] = attributes.delete(:url) if attributes.key?(:url)
+    base_form_attr = { action: "#", method: "post" }
+    HexletCode::Tag.build("form", base_form_attr.merge(attributes))
+  end
+
   class Tag
     class << self
       def build(tag_name, attributes = {})
