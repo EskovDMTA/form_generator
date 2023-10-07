@@ -22,9 +22,41 @@ Or install it yourself as:
     $ gem install hexlet-code
 
 ## Usage
+Define a User structure with three fields: name, job.The **keyword_init: true** parameter allows named arguments to be used when creating a User object
+```ruby
+User = Struct.new(:name, :job, keyword_init: true)
+```
+Create a new user object of type User and initialize it with the values for the name, job and gender fields
+```ruby
+user = User.new name: 'rob', job: 'hexlet'
+```
+Creating a form using a user object. Object |f| is an instance of the **HexletCode::FormBuilder** class that provides methods for creating form elements.
 
-TODO: Write usage instructions here
-
+```ruby
+HexletCode.form_for user do |f|
+  # f.input :name creates an input field for the name value of the user object. If the name value exists, it will be displayed in the input field.
+  f.input :name
+  #f.input :job, as: :text creates an input field for the job value of the user object, but using a textarea field instead of a regular input field.
+  f.input :job, as: :text
+end
+# =>
+# <form action="#" method="post">
+# <input name="name" type="text" value="rob">
+# <textarea name="job" cols="20" rows="40">hexlet</textarea>
+# </form>
+```
+For fields, you can specify additional attributes in the form of a hash as the last parameter
+```ruby
+HexletCode.form_for user, url: '#' do |f|
+  f.input :name, class: 'user-input'
+  f.input :job
+end
+# =>
+# <form action="#" method="post">
+# <input name="name" type="text" value="rob" class="user-input">
+# <input name="job" type="text" value="hexlet">
+# </form>
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
