@@ -5,7 +5,7 @@ require_relative "../../../lib/hexlet/hexlet-code/tags"
 
 class TestTag < Minitest::Test
   def test_form_for
-    expected_form = File.read("./fixtures/form.html")
+    expected_form = File.read("./test/hexlet/hexlet-code/fixtures/form.html")
     struct_user = Struct.new(:name, :job, :gender, keyword_init: true)
     user = struct_user.new name: "rob", job: "developer", gender: "Male"
     form = HexletCode.form_for user do |f|
