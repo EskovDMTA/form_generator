@@ -6,7 +6,7 @@ module HexletCode
 
     def initialize(user)
       @user = user
-      @result = ""
+      @result = ''
     end
 
     def input(name, attributes = {})
@@ -26,24 +26,24 @@ module HexletCode
       end
 
       @result += build_label(name)
-      @result += Tag.build("textarea", text_attributes, attributes[:value])
+      @result += Tag.build('textarea', text_attributes, attributes[:value])
       @result
     end
 
     def build_default_input(name, attributes)
-      input_attributes = { name: name, type: "text", value: @value }.merge(attributes)
+      input_attributes = { name: name, type: 'text', value: @value }.merge(attributes)
 
       @result += build_label(name)
-      @result += Tag.build("input", input_attributes)
+      @result += Tag.build('input', input_attributes)
       @result
     end
 
     def build_label(name)
-      Tag.build("label", { for: name }, name.to_s.capitalize)
+      Tag.build('label', { for: name }, name.to_s.capitalize)
     end
 
-    def submit(value = "Save")
-      @result += Tag.build("input", { type: "submit", value: value })
+    def submit(value = 'Save')
+      @result += Tag.build('input', { type: 'submit', value: value })
     end
   end
 end
