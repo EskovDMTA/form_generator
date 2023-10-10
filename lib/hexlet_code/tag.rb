@@ -12,7 +12,7 @@ module HexletCode
       end
 
       def parsing_attributes(attributes = {})
-        attributes.map { |key, value| " #{key}=\"#{value}\"" }.join('')
+        attributes.map { |key, value| " #{key}=\"#{value}\"" }.join
       end
 
       def paired_tag?(tag_name)
