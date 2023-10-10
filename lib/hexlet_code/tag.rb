@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "paired_tags"
+require_relative "paired_tags/paired_tags"
 
 module HexletCode
   class Tag

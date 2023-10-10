@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "lib/hexlet/code/version"
+require_relative "lib/hexlet_code/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "hexlet-code"
+  spec.name = "hexlet_code"
   spec.version = Hexlet::Code::VERSION
   spec.authors = ["eskovdmt"]
   spec.email = ["DmtEskov@gmail.com"]

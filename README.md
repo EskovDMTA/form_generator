@@ -10,7 +10,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hexlet-code'
+gem 'hexlet_code'
 ```
 
 And then execute:

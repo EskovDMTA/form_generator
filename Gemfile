@@ -4,7 +4,7 @@ ruby "3.2.2"
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in hexlet-code.gemspec
+# Specify your gem's dependencies in hexlet_code.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
