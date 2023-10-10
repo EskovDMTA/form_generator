@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Hexlet education forms project'
   spec.homepage = 'https://github.com/EskovDMTA/rails-project-63'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>= 3.2.2'
 
   spec.metadata['allowed_push_host'] = 'https://github.com/EskovDMTA/rails-project-63'
 

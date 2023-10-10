@@ -21,9 +21,7 @@ module HexletCode
     end
 
     def build_text_input(name, attributes)
-      text_attributes = { name: name, cols: 20, rows: 40 }.merge(attributes).reject do |k, _v|
-        %i[as value].include?(k)
-      end
+      text_attributes = { name:, cols: 20, rows: 40 }.merge(attributes).except(:as, :value)
 
       @result += build_label(name)
       @result += Tag.build('textarea', text_attributes, attributes[:value])
@@ -31,7 +29,7 @@ module HexletCode
     end
 
     def build_default_input(name, attributes)
-      input_attributes = { name: name, type: 'text', value: @value }.merge(attributes)
+      input_attributes = { name:, type: 'text', value: @value }.merge(attributes)
 
       @result += build_label(name)
       @result += Tag.build('input', input_attributes)
@@ -43,7 +41,7 @@ module HexletCode
     end
 
     def submit(value = 'Save')
-      @result += Tag.build('input', { type: 'submit', value: value })
+      @result += Tag.build('input', { type: 'submit', value: })
     end
   end
 end

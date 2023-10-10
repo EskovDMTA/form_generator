@@ -8,7 +8,7 @@ module HexletCode
       def build(tag_name, attributes = {}, content = '')
         tag_body = yield if block_given?
         content = "\n#{content}" if tag_name == 'form'
-        "<#{tag_name}#{parsing_attributes(attributes)}>#{tag_body || content || ""}#{paired_tag?(tag_name)}\n"
+        "<#{tag_name}#{parsing_attributes(attributes)}>#{tag_body || content || ''}#{paired_tag?(tag_name)}\n"
       end
 
       def parsing_attributes(attributes = {})
