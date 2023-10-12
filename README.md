@@ -1,9 +1,6 @@
 [![hexlet-check](https://github.com/EskovDMTA/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/EskovDMTA/rails-project-63/actions/workflows/hexlet-check.yml)   [![RUBY](https://github.com/EskovDMTA/rails-project-63/actions/workflows/ruby.yml/badge.svg)](https://github.com/EskovDMTA/rails-project-63/actions/workflows/ruby.yml)
 # Hexlet::Code
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet/code`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Form generator is a DSL that makes it easy to save forms. This library takes on tasks that would normally require writing a lot of boilerplate code.
 
 ## Installation
 
@@ -72,7 +69,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet-code.
+Bug reports and pull requests are welcome on GitHub at https://github.com/EskovDMTA/hexlet-code.
 
 ## License
 
