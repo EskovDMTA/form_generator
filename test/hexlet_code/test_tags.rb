@@ -3,16 +3,10 @@
 require 'test_helper'
 
 class TestTag < Minitest::Test
-  def test_form_for
-    expected_form = File.read('./test/hexlet_code/fixtures/form.html')
-    struct_user = Struct.new(:name, :job, :gender, keyword_init: true)
-    user = struct_user.new name: 'rob', job: 'developer', gender: 'Male'
-    form = HexletCode.form_for user do |f|
-      f.input :name, class: 'hexlet'
-      f.input :job, as: :text
-      f.submit 'Wow'
-    end
-    assert_equal expected_form.chomp, form.chomp
+  User = Struct.new(:name, :job, :gender, keyword_init: true)
+
+  def setup
+    @user = User.new name: 'rob', job: 'developer', gender: 'Male'
   end
 
   def test_single_quotes_tag

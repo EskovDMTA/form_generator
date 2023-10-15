@@ -7,7 +7,7 @@ module HexletCode
     def self.parsing_attributes: -> String
   end
 
-  class FormBodyBuilder
+  class FormBuilder
     @result: String
 
     def build_default_input: -> String

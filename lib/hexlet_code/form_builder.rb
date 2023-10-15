@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class FormBodyBuilder
-    attr_reader :user, :form_body, :form_attr
+  class FormBuilder
+    attr_reader :user
+    attr_accessor :form_body
 
     EXCLUDED_KEYS = [:as].freeze
 
     def initialize(user, url: '#', method: 'post', **attributes)
       @user = user
       @form_body = []
-      @form_attr = attributes.merge(tag: 'form', action: url, method:)
+      form_body.push({ tag: 'form', action: url, method: }.merge(attributes))
     end
 
     def input(name, attributes = {})
@@ -29,8 +30,6 @@ module HexletCode
       else
         @form_body.push(build_text_attr(name, tag_attributes))
       end
-    rescue NoMethodError => e
-      throw e
     end
 
     def build_textarea_attr(name, field_attributes)

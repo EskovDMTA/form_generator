@@ -3,10 +3,10 @@
 module HexletCode
   class FormRender
     class << self
-      def render_html(form_attr, form_body)
-        form = "<form action=\"#{form_attr[:action]}\" method=\"#{form_attr[:method]}\">\n"
-        form_body.each do |tag|
-          form += HexletCode::Tag.build(tag[:tag], tag.except(:tag))
+      def render_html(form_body)
+        form = ''
+        form_body.each do |tag_with_attributes|
+          form += HexletCode::Tag.build(tag_with_attributes[:tag], tag_with_attributes.except(:tag))
         end
         form += '</form>'
         form
