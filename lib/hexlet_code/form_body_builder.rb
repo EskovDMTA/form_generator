@@ -2,46 +2,47 @@
 
 module HexletCode
   class FormBodyBuilder
-    attr_reader :user
+    attr_reader :user, :form_body, :form_attr
 
-    def initialize(user)
+    EXCLUDED_KEYS = [:as].freeze
+
+    def initialize(user, url: '#', method: 'post', **attributes)
       @user = user
-      @result = ''
+      @form_body = []
+      @form_attr = attributes.merge(tag: 'form', action: url, method:)
     end
 
     def input(name, attributes = {})
-      @value = user.public_send(name)
-      attributes[:value] = @value if @value
-
-      if attributes[:as] == :text
-        build_text_input(name, attributes)
-      else
-        build_default_input(name, attributes)
-      end
-    end
-
-    def build_text_input(name, attributes)
-      text_attributes = { name:, cols: 20, rows: 40 }.merge(attributes).except(:as, :value)
-
-      @result += build_label(name)
-      @result += Tag.build('textarea', text_attributes, attributes[:value])
-      @result
-    end
-
-    def build_default_input(name, attributes)
-      input_attributes = { name:, type: 'text', value: @value }.merge(attributes)
-
-      @result += build_label(name)
-      @result += Tag.build('input', input_attributes)
-      @result
-    end
-
-    def build_label(name)
-      Tag.build('label', { for: name }, name.to_s.capitalize)
+      build_input_attributes(name, attributes)
     end
 
     def submit(value = 'Save')
-      @result += Tag.build('input', { type: 'submit', value: })
+      @form_body.push({ tag: 'input', type: 'submit', value: })
+    end
+
+    def build_input_attributes(name, attributes = {})
+      @value = user.public_send(name)
+      tag_attributes = attributes.reject { |key| EXCLUDED_KEYS.include?(key) }
+      @form_body.push(build_label_attr(name))
+      if attributes[:as] == :text
+        @form_body.push(build_textarea_attr(name, tag_attributes))
+      else
+        @form_body.push(build_text_attr(name, tag_attributes))
+      end
+    rescue NoMethodError => e
+      throw e
+    end
+
+    def build_textarea_attr(name, field_attributes)
+      { tag: 'textarea', name:, content: @value, cols: 20, rows: 40 }.merge(field_attributes)
+    end
+
+    def build_text_attr(name, field_attributes)
+      { tag: 'input', name:, type: 'text', value: @value }.merge(field_attributes)
+    end
+
+    def build_label_attr(name)
+      { tag: 'label', for: name, content: name.capitalize }
     end
   end
 end

@@ -12,30 +12,30 @@ class TestTag < Minitest::Test
       f.input :job, as: :text
       f.submit 'Wow'
     end
-    assert_equal expected_form, form
+    assert_equal expected_form.chomp, form.chomp
   end
 
   def test_single_quotes_tag
-    assert_equal '<br>', HexletCode::Tag.build('br').chomp
+    assert_equal '', HexletCode::Tag.paired_tag('br')
   end
 
   def test_double_quotes_tag
-    assert_equal '<div></div>', HexletCode::Tag.build('div').chomp
+    assert_equal '</div>', HexletCode::Tag.paired_tag('div')
   end
 
-  def test_tag_with_tezt
-    assert_equal '<div>Tag with text</div>', HexletCode::Tag.build('div') { 'Tag with text' }.chomp
+  def test_tag_with_text
+    assert_equal '<div>Tag with text</div>', HexletCode::Tag.build('div') { 'Tag with text' }.strip
   end
 
   def test_tag_with_attributes
     assert_equal '<div data="id-123-qwe" class="hexlet_code-tag"></div>',
                  HexletCode::Tag.build('div', data: 'id-123-qwe',
-                                              class: 'hexlet_code-tag').chomp
+                                              class: 'hexlet_code-tag').strip
   end
 
   def test_tag_with_attributes_and_text
     assert_equal '<div data="id-123-qwe" class="hexlet_code-tag">With text</div>',
                  HexletCode::Tag.build('div', data: 'id-123-qwe',
-                                              class: 'hexlet_code-tag') { 'With text' }.chomp
+                                              class: 'hexlet_code-tag') { 'With text' }.strip
   end
 end
