@@ -11,11 +11,3 @@ module HexletCode
     FormRender.render_html(builded_form.form_attr, builded_form.form_body)
   end
 end
-
-struct_user = Struct.new(:name, :job, :gender, keyword_init: true)
-user = struct_user.new name: 'rob', job: 'developer', gender: 'Male'
-HexletCode.form_for user do |f|
-  f.input :name, class: 'hexlet'
-  f.input :job, as: :text
-  f.submit 'Wow'
-end
