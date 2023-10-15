@@ -8,7 +8,7 @@ module HexletCode
     class << self
       def build(tag, attributes = {})
         content = block_given? ? yield : attributes[:content]
-        tab = tag != 'form' ? TABULATION : ''
+        tab = tag == 'form' ? '' : TABULATION
         only_tag_attributes = attributes.except(:content)
         "#{tab}<#{tag}#{parsing_attributes(only_tag_attributes)}>#{content}#{paired_tag(tag)}\n"
       end
