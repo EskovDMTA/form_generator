@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require_relative 'inputs/input'
-require_relative 'inputs/input_textarea'
+
+require_relative 'inputs/input_string'
+require_relative 'inputs/input_text'
 require_relative 'inputs/input_sumbit'
 
 module HexletCode
@@ -21,31 +22,25 @@ module HexletCode
     end
 
     def input(name, attributes = {})
-      tag_attributes = build_input_attributes(name, attributes)
-      tag_type = attributes[:as] || ''
-      input_type = "HexletCode::Inputs::Input#{tag_type.capitalize}"
-      input = Object.const_get(input_type)
-      @form_body[:inputs] << build_label_attr(name)
-      @form_body[:inputs] << input.create(tag_attributes).attributes
+      @form_body[:inputs] << build_input_attributes(name, attributes)
     end
 
-    def submit(value = 'Save')
-      @form_body[:submit] = {tag: 'input', type: 'submit', value:}
+    def submit(value = 'Save', attributes = {})
+      all_attributes = attributes.merge(tag: 'input', type: 'submit', value:)
+      puts attributes
+      @form_body[:submit] = { options: all_attributes }
     end
 
     def build_input_attributes(name, attributes = {})
-      value = user.public_send(name)
-      tag_attributes = attributes.reject { |key| EXCLUDED_KEYS.include?(key) }
-      {name: , value:}.merge(tag_attributes)
+      tag_value = user.public_send(name)
+      tag_type = attributes[:as] || 'string'
+      attributes = attributes.reject { |key| EXCLUDED_KEYS.include? key }
+      attributes.fetch(:label, name.to_s.capitalize)
+      {
+        type: tag_type, value: tag_value, name:,
+        label: build_label_attr(name)
+      }.merge(attributes)
     end
-
-    # def build_textarea_attr(name, field_attributes)
-    #   { tag: 'textarea', name:, content: @value, cols: 20, rows: 40 }.merge(field_attributes)
-    # end
-    #
-    # def build_text_attr(name, field_attributes)
-    #   { tag: 'input', name:, type: 'text', value: @value }.merge(field_attributes)
-    # end
 
     def build_label_attr(name)
       { tag: 'label', for: name, content: name.capitalize }

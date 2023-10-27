@@ -8,16 +8,13 @@ module HexletCode
   def self.form_for(user, attributes = {})
     builded_form = FormBuilder.new(user, **attributes)
     yield(builded_form) if block_given?
-
-
-    FormRender.render_html(builded_form.form_body)
+    puts FormRender.render_html(builded_form.form_body)
   end
 end
 
-
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 @user = User.new name: 'rob', job: 'developer', gender: 'Male'
-form = HexletCode.form_for(@user, class: 'hexlet-form') do |f|
+HexletCode.form_for(@user, class: 'hexlet-form') do |f|
   f.input :name, class: 'hexlet'
   f.input :job, as: :text
   f.submit 'Wow'
