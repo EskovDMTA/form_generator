@@ -13,7 +13,6 @@ class TestFormBuilder < Minitest::Test
       submit: { options: nil },
       form_options: { action: '#', method: 'post' }
     }
-    puts Form_Builder.form_body
   end
 
   def test_submit
