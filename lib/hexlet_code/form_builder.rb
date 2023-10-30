@@ -13,11 +13,12 @@ module HexletCode
 
     def initialize(user, **attributes)
       @user = user
-      attributes.fetch(:url, '#')
+      action = attributes.fetch(:url, '#')
+      method = attributes.fetch(:method, 'post')
       @form_body = {
         inputs: [],
         submit: { options: nil },
-        form_options: { action: '#', method: 'post' }.merge(attributes.except(:url))
+        form_options: { action:, method: }.merge(attributes.except(:url, :method))
       }
     end
 
