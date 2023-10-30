@@ -5,7 +5,7 @@ module HexletCode
     SINGLE_TAGS = %w[input img br].freeze
 
     def self.build(tag, attributes = {})
-      tag_attributes = parsing_attributes(attributes)
+      tag_attributes = parsing_attributes(attributes.except(:content))
       return "<#{tag}#{tag_attributes}>\n" if SINGLE_TAGS.include?(tag)
 
       content = block_given? ? yield : attributes.fetch(:content, '')

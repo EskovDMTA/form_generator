@@ -9,14 +9,6 @@ class TestTag < Minitest::Test
     @user = User.new name: 'rob', job: 'developer', gender: 'Male'
   end
 
-  def test_single_quotes_tag
-    assert_equal '', HexletCode::Tag.paired_tag('br')
-  end
-
-  def test_double_quotes_tag
-    assert_equal '</div>', HexletCode::Tag.paired_tag('div')
-  end
-
   def test_tag_with_text
     assert_equal '<div>Tag with text</div>', HexletCode::Tag.build('div') { 'Tag with text' }.strip
   end

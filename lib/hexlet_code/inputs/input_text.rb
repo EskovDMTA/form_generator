@@ -7,7 +7,9 @@ module HexletCode
     class InputText < BaseInput
       def self.create(attributes)
         common_attributes = { tag: 'textarea', cols: 20, rows: 40 }
-        super(common_attributes.merge(attributes))
+        attributes[:content] = attributes.delete(:value)
+        attributes.delete(:type)
+        super(attributes.merge(common_attributes))
       end
     end
   end

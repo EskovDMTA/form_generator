@@ -6,7 +6,7 @@ module HexletCode
     class InputString < BaseInput
       def self.create(attributes)
         common_attributes = { tag: 'input', type: 'text' }
-        super(common_attributes.merge(attributes))
+        super(attributes.merge(common_attributes))
       end
     end
   end

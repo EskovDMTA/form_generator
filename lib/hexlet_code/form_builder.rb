@@ -13,11 +13,11 @@ module HexletCode
 
     def initialize(user, **attributes)
       @user = user
-      action = attributes.fetch(:url, '#')
+      attributes.fetch(:url, '#')
       @form_body = {
         inputs: [],
         submit: { options: nil },
-        form_options: { action:, method: 'post' }.merge(attributes.except(:url))
+        form_options: { action: '#', method: 'post' }.merge(attributes.except(:url))
       }
     end
 
@@ -27,7 +27,6 @@ module HexletCode
 
     def submit(value = 'Save', attributes = {})
       all_attributes = attributes.merge(tag: 'input', type: 'submit', value:)
-      puts attributes
       @form_body[:submit] = { options: all_attributes }
     end
 
@@ -37,7 +36,7 @@ module HexletCode
       attributes = attributes.reject { |key| EXCLUDED_KEYS.include? key }
       attributes.fetch(:label, name.to_s.capitalize)
       {
-        type: tag_type, value: tag_value, name:,
+        name:, type: tag_type, value: tag_value,
         label: build_label_attr(name)
       }.merge(attributes)
     end

@@ -3,7 +3,6 @@
 module HexletCode
   class FormRender
     def self.render_html(form_body)
-      puts form_body
       form = "<form#{HexletCode::Tag.parsing_attributes(form_body[:form_options])}>\n"
       form_body[:inputs].each do |attributes|
         label_attributes = attributes[:label]
