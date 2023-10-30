@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './base_input'
+require_relative 'base_input'
 module HexletCode
   module Inputs
     class InputString < BaseInput

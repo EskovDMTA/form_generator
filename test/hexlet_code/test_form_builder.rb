@@ -18,17 +18,19 @@ class TestFormBuilder < Minitest::Test
   def test_submit
     Form_Builder.submit 'TestSubmit'
     assert_equal Form_Builder.form_body[:submit], { options:
-                  {
-                    tag: 'input',
-                    type: 'submit',
-                    value: 'TestSubmit'
-                  } }
+                                                      {
+                                                        tag: 'input',
+                                                        type: 'submit',
+                                                        value: 'TestSubmit'
+                                                      } }
   end
 
   def test_input
     Form_Builder.input :name, class: 'hexlet'
     assert_equal Form_Builder.form_body[:inputs],
-                 [{ type: 'string', value: 'rob', name: :name, label: { tag: 'label', for: :name, content: :Name }, class: 'hexlet' }]
+                 [{ type: 'string', value: 'rob', name: :name,
+                    label: { tag: 'label', for: :name, content: :Name },
+                    class: 'hexlet' }]
   end
 
   def test_input_textarea
