@@ -8,7 +8,7 @@ module HexletCode
   def self.form_for(user, attributes = {})
     builded_form = FormBuilder.new(user, **attributes)
     yield(builded_form) if block_given?
-    puts FormRender.render_html(builded_form.form_body)
+    FormRender.render_html(builded_form.form_body)
   end
 end
 

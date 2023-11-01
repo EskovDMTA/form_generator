@@ -4,8 +4,8 @@ module HexletCode
   class FormRender
     def self.render_html(form_body)
       HexletCode::Tag.build('form', form_body[:form_options]) do
-        inputs = form_body[:inputs].map { |input| build_input_tag(input) }
-        submit = build_submit_tag(form_body[:submit][:options])
+        inputs = form_body[:inputs].map { |input| build_input_tag(input) } if form_body[:inputs].is_a?(Array)
+        submit = build_submit_tag(form_body[:submit][:options]) unless form_body[:submit][:options].nil?
         "\n#{inputs.join}#{submit}"
       end
     end

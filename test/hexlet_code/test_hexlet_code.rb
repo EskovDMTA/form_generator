@@ -4,14 +4,47 @@ require 'test_helper'
 
 class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
-  def test_form_for
-    expected_form = File.read('./test/hexlet_code/fixtures/form.html')
-    @user = User.new name: 'rob', job: 'developer', gender: 'Male'
+  def setup
+    @user = User.new(name: 'rob', job: 'developer', gender: 'Male')
+  end
+
+  def test_full_form
+    fixture = load_fixture('full_form.html')
     form = HexletCode.form_for(@user, class: 'hexlet-form') do |f|
       f.input :name, class: 'hexlet'
       f.input :job, as: :text
-      f.submit 'Wow'
+      f.submit 'Wow', class: 'btn_hexlet'
     end
-    assert_equal expected_form.chomp, form.chomp
+    assert_equal fixture, form
+  end
+
+  def test_empty_form
+    fixture = load_fixture('empty_form.html')
+    form = HexletCode.form_for(@user)
+    assert_equal fixture, form
+  end
+
+  def test_empty_form_with_url
+    fixture = load_fixture('empty_form_with_url.html')
+    form = HexletCode.form_for(@user, url: '/url')
+    assert_equal fixture, form
+  end
+
+  def test_form_with_submit
+    fixture = load_fixture('form_with_submit.html')
+    form = HexletCode.form_for(@user) { |f| f.submit 'Wow' }
+    assert_equal fixture, form
+  end
+
+  def test_form_with_text_input
+    fixture = load_fixture('form_with_text_input.html')
+    form = HexletCode.form_for(@user) { |f| f.input :name }
+    assert_equal fixture, form
+  end
+
+  def test_form_with_textarea
+    fixture = load_fixture('form_with_textarea.html')
+    form = HexletCode.form_for(@user) { |f| f.input :job, as: :text }
+    assert_equal fixture, form
   end
 end

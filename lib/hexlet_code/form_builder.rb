@@ -26,7 +26,7 @@ module HexletCode
     end
 
     def submit(value = 'Save', attributes = {})
-      all_attributes = attributes.merge(tag: 'input', type: 'submit', value:)
+      all_attributes = { tag: 'input', type: 'submit', value: }.merge(attributes)
       @form_body[:submit] = { options: all_attributes }
     end
 
