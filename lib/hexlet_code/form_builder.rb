@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'inputs/input_string'
-require_relative 'inputs/input_text'
-require_relative 'inputs/input_sumbit'
+require_relative 'inputs/string_input'
+require_relative 'inputs/text_input'
 
 module HexletCode
   class FormBuilder
@@ -34,8 +33,9 @@ module HexletCode
     def build_input_attributes(name, attributes = {})
       tag_value = user.public_send(name)
       tag_type = attributes[:as] || 'string'
-      attributes = attributes.reject { |key| EXCLUDED_KEYS.include? key }
+      attributes = attributes.reject { |key| EXCLUDED_KEYS.include?(key) }
       attributes.fetch(:label, name.to_s.capitalize)
+
       {
         name:, type: tag_type, value: tag_value,
         label: build_label_attr(name)
@@ -43,7 +43,7 @@ module HexletCode
     end
 
     def build_label_attr(name)
-      { tag: 'label', for: name, content: name.capitalize }
+      { for: name, content: name.capitalize }
     end
   end
 end

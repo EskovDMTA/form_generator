@@ -3,25 +3,18 @@
 module HexletCode
   class FormRender
     def self.render_html(form_body)
-      form = build_form_tag(form_body[:form_options])
-      form += build_input_tags(form_body[:inputs])
-      form += build_submit_tag(form_body[:submit][:options])
-      form += '</form>'
-      form
+      HexletCode::Tag.build('form', form_body[:form_options]) do
+        inputs = form_body[:inputs].map { |input| build_input_tag(input) }
+        submit = build_submit_tag(form_body[:submit][:options])
+        "\n#{inputs.join}#{submit}"
+      end
     end
 
-    def self.build_form_tag(form_options)
-      "<form#{HexletCode::Tag.parsing_attributes(form_options)}>\n"
-    end
-
-    def self.build_input_tags(inputs)
-      inputs.map do |attributes|
-        label_attributes = attributes[:label]
-        input_type = "HexletCode::Inputs::Input#{attributes[:type].capitalize}"
-        input_attributes = Object.const_get(input_type).create(attributes).attributes
-        HexletCode::Tag.build(label_attributes[:tag], label_attributes.except(:tag)) +
-          HexletCode::Tag.build(input_attributes[:tag], input_attributes.except(:tag, :label))
-      end.join
+    def self.build_input_tag(input)
+      klass_name = "HexletCode::Inputs::#{input[:type].capitalize}Input"
+      klass = Object.const_get(klass_name)
+      input_obj = klass.new(input)
+      input_obj.render
     end
 
     def self.build_submit_tag(submit_options)

@@ -45,6 +45,7 @@ end
 # <input name="name" type="text" value="rob">
 # <label for="job">Job</label>
 # <textarea name="job" cols="20" rows="40">hexlet</textarea>
+# <input type="submit" value="Wow">
 # </form>
 ```
 For fields, you can specify additional attributes in the form of a hash as the last parameter

@@ -3,14 +3,21 @@
 module HexletCode
   module Inputs
     class BaseInput
-      attr_accessor :attributes
-
-      def initialize(attributes)
-        @attributes = attributes
+      def initialize(input)
+        @input = input.except(:label)
+        @label = input[:label]
       end
 
-      def self.create(attributes)
-        new(attributes)
+      def label
+        HexletCode::Tag.build('label', @label)
+      end
+
+      def input
+        raise NotImplementedError
+      end
+
+      def render
+        label + input
       end
     end
   end
