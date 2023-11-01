@@ -4,6 +4,7 @@ require 'test_helper'
 
 class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
+
   def setup
     @user = User.new(name: 'rob', job: 'developer', gender: 'Male')
   end
@@ -46,5 +47,13 @@ class TestHexletCode < Minitest::Test
     fixture = load_fixture('form_with_textarea.html')
     form = HexletCode.form_for(@user) { |f| f.input :job, as: :text }
     assert_equal fixture, form
+  end
+
+  def test_no_field_in_model
+    assert_raises(NoMethodError) do
+      HexletCode.form_for(@user, url: '/users') do |f|
+        f.input :no_field
+      end
+    end
   end
 end
