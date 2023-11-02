@@ -3,6 +3,7 @@
 module HexletCode
   module Inputs
     class BaseInput
+      autoload(:HexletCode, 'hexlet_code/tag')
       def initialize(input)
         @input = input.except(:label)
         @label = input[:label]

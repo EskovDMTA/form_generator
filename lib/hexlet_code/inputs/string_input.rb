@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'base_input'
 module HexletCode
   module Inputs
+    autoload(:BaseInput, 'hexlet_code/inputs/base_input')
     class StringInput < BaseInput
       def input
         common_attributes = { tag: 'input', type: 'text' }

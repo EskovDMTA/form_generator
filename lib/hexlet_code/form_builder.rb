@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'inputs/string_input'
-require_relative 'inputs/text_input'
+# require_relative 'inputs/text_input'
+# require_relative 'inputs/string_input'
 
 module HexletCode
   class FormBuilder
