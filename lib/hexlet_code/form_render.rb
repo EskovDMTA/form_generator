@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'inputs/text_input'
-require_relative 'inputs/string_input'
-
 module HexletCode
   class FormRender
     def self.render_html(form_body)

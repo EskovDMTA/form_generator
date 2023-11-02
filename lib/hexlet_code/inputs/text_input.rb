@@ -2,7 +2,6 @@
 
 module HexletCode
   module Inputs
-    autoload(:BaseInput, 'hexlet_code/inputs/base_input')
     class TextInput < BaseInput
       COLS = 20
       ROWS = 40
